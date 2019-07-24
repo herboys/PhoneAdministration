@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>物业管理</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script src="//webapi.amap.com/maps?v=1.4.15&key=1a7f3a58bbf721501152c2fe1116f4db"></script>
+  <script>
+    fnResize();
+    fnResize();
+    window.onresize = function() {
+      fnResize();
+    }
+
+    function fnResize() {
+      var deviceWidth = document.documentElement.clientWidth || window.innerWidth;
+      if (deviceWidth >= 750) {
+        deviceWidth = 750;
+      }
+      if (deviceWidth <= 320) {
+        deviceWidth = 320;
+      }
+      document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px';
+    }
+  </script>
+</html>
