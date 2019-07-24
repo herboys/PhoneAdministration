@@ -73,27 +73,27 @@
               name:"我的小区",
               itempath:"areaing"
             },{
-                id:1,
+                id:2,
               icon:  require('../assets/icon/service.png'),
               name:"我的服务人员",
               itempath:"serviceing"
             },{
-                id:1,
+                id:3,
               icon:  require('../assets/icon/Order.png'),
               name:"我的订单",
               itempath:"index"
             },{
-                id:1,
+                id:4,
               icon:  require('../assets/icon/user.png'),
               name:"我的用户",
               itempath:"usering"
             },{
-                id:1,
+                id:5,
               icon:  require('../assets/icon/agent.png'),
               name:"我的代理",
               itempath:"agenting"
             },{
-                id:1,
+                id:6,
               icon:  require('../assets/icon/Invitation.png'),
               name:"我的邀请",
               itempath:"Invitationing"
