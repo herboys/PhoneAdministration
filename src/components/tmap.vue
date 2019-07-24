@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="page">
       <header>
         <div>
           <div>
@@ -11,6 +11,7 @@
           </div>
         </div>
       </header>
+      <div style="height: 1rem"></div>
       <main>
         <div>
           <ul>
@@ -95,14 +96,67 @@
 </script>
 
 <style  lang="scss" scoped>
-
+  .page{
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+  }
+  header{
+background-color: white;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 1rem;
+    padding: 0 .2rem;
+    div{
+      background-color: #eeeeee;
+      height: 1rem;
+      display: flex;
+      text-align: center;
+      border-radius: .5rem;
+      font-size: .3rem;
+      padding: 0 .2rem;
+      div{
+        line-height: 1rem;
+        width: 100%;
+      }
+      div:nth-child(1){
+        position: relative;
+        flex: 1;
+        img{
+          position: absolute;
+          right: 0.1rem;
+          top: 25%;
+          width: .3rem;
+          height: .3rem;
+        }
+      }
+      div:nth-child(2){
+        text-align: center;
+        flex: 100;
+        input{
+          outline: none;
+          width: 100%;
+          height: .6rem;
+          margin-top: .15rem;
+          padding-left: .2rem;
+          border:0px;
+          border-radius: .3rem;
+        }
+        span{
+          width: 1rem;
+        }
+      }
+    }
+  }
   main{
     padding: .3rem;
     div{
       ul{
         li{
           line-height: .5rem;
-          border-bottom: .02rem solid white;
+          border-bottom: .02rem solid #eeeeee;
           display: flex;
           justify-content: flex-start;
           align-items: center;

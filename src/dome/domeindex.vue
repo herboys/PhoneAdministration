@@ -104,7 +104,6 @@
             imgurl:"",
             balance:'',
             company:""
-
           }
       },
       computed:{
