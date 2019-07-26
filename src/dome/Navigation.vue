@@ -38,7 +38,7 @@
               code:iscode,
             }
             login(para).then(res=>{
-              // alert(JSON.stringify(res))
+              alert(JSON.stringify(res))
               this.USERID(res.info.id)
               this.USERIMG(res.info.imgurl)
               this.USERNAME(res.info.nickname)
