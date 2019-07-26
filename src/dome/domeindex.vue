@@ -39,7 +39,17 @@
       <nav>
         <div class="nav-box">
           <img  src="../assets/icon/horn.png"/>
-          <span>小小胖已经成功办理年卡</span>
+          <span>
+            <ul class="marquee_list" :class="{marquee_top:animate}">
+                <li v-for="(item, index) in marqueeList" >
+                    <span>{{item.name}}</span>
+                    <span>在</span>
+                    <span class="red"> {{item.city}}</span>
+                    <span>购买</span>
+                    <span class="red"> {{item.amount}}</span>
+                    <span>张月卡</span>
+                </li>
+            </ul></span>
         </div>
       </nav>
       <main>
@@ -108,7 +118,31 @@
             nickname:'',
             imgurl:"",
             balance:'',
-            company:""
+            company:"",
+            marqueeList: [
+              {
+                name: '小小小胖',
+                city: '海新城',
+                amount: '111'
+              },{
+                name: '小小小胖',
+                city: '海新城',
+                amount: '122'
+              },{
+                name: '小小小胖',
+                city: '海新城',
+                amount: '133'
+              },{
+                name: '小小小胖',
+                city: '海新城',
+                amount: '44'
+              },{
+                name: '小小小胖',
+                city: '海新城',
+                amount: '155'
+              },
+            ],
+            animate: false,
           }
       },
       computed:{
@@ -120,6 +154,7 @@
         this.nickname=this.username
         this.company=this.usercompany
         this.balance=this.userbalance
+        setInterval(this.showMarquee, 2000)
         },
       mounted(){
           let para={
@@ -141,6 +176,13 @@
         })
       },
       methods:{
+        showMarquee: function () {
+          this.animate = true;
+          setTimeout(()=>{
+            this.marqueeList.push(this.marqueeList[0]);
+            this.marqueeList.shift();
+            this.animate = false;
+          },500)},
         ModularGoing(item){
           switch (item.itempath){
           case "index":
@@ -154,6 +196,7 @@
 </script>
 
 <style scoped lang="scss">
+
    header{
   padding:  .3rem;
   div{
@@ -248,6 +291,11 @@
          height: .39rem;
          margin-right:.2rem ;
        }
+     span{
+       height: .6rem;
+       overflow: hidden;
+
+     }
      }
    }
    main{
@@ -295,5 +343,47 @@
 
      }
 
+   }
+.marquee_list{
+  margin-top: .05rem;
+}
+
+   .marquee_title {
+     height: .6rem;
+     font-size: 14px;
+     border-right: 1px solid #d8d8d8;
+     align-items: center;
+   }
+
+   .marquee_box {
+     display: block;
+     position: relative;
+     height: .5rem;
+     overflow: hidden;
+   }
+
+   .marquee_list {
+     display: block;
+     height: .5rem;
+     /*position: absolute;*/
+     /*top: 0;*/
+     /*left: 0;*/
+   }
+   .marquee_top {
+     transition: all 0.5s;
+     margin-top: -.5rem
+   }
+
+   .marquee_list li {
+     height: .5rem;
+     line-height:  .5rem;
+   }
+
+   .marquee_list li span {
+     padding: 0 2px;
+   }
+
+   .red {
+     color: #FF0101;
    }
 </style>
