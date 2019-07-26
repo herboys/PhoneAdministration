@@ -14,7 +14,7 @@
       <div>
         <ul  v-for="item in ismian" :key="item.name">
           <li>
-            {{item.name}}
+            {{item.name.substr(0,5)}}
           </li>
           <li>
             {{item.isshouru}}
@@ -36,9 +36,13 @@
 </template>
 
 <script>
+  import {serviceList}from  '@/request/api';
+  import {mapState,mapMutations} from "vuex"
   export default {
     data(){
       return{
+        uid:"",
+        page:1,
         isheader:[
           {
             name:"姓名"
@@ -68,6 +72,29 @@
         ]
       }
     },
+    computed:{
+      ...mapState(['userid'])
+    },
+    created(){
+      this.uid=this.userid
+    },
+    mounted(){
+      let para={
+        uid:this.uid,
+        page:this.page
+      }
+      serviceList(para).then(res=>{
+        let Islist=res.list
+        Islist.forEach((item)=>{
+          item.name=item.realname
+          delete item.realname
+        })
+        this.ismian=Islist
+      }).catch(err=>{
+
+      })
+    },
+
     methods:{
       gotmap(){
         this.$router.push({ path: "/tmap"})

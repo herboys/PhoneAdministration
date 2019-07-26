@@ -1,1 +1,2 @@
-// export const PUBLIC_DETAILSS = state => state.PUBLIC_DETAILSS;
+export const DYNAMICADDRESS = state => state.DYNAMICADDRESS;
+export const PUBLICADDRESS = state => state.PUBLICADDRESS;

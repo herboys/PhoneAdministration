@@ -39,18 +39,18 @@
       <nav>
         <div class="nav-box">
           <img  src="../assets/icon/horn.png"/>
-          <span>{{code}}小小胖已经成功办理年卡</span>
+          <span>小小胖已经成功办理年卡</span>
         </div>
       </nav>
       <main>
         <ul>
-          <li v-for="item in list" :key="item.id" @click="ModularGoing(item)">
+          <li v-for="item in list" :key="item.name" @click="ModularGoing(item)">
             <div>
               <img :src="item.icon" />
               <p>
                 <a>{{item.name}}</a>
               </p>
-              <p>12</p>
+              <p>{{item.count}}</p>
             </div>
           </li>
         </ul>
@@ -59,41 +59,46 @@
 </template>
 
 <script>
-  import { wxcode,login } from '@/request/api';
+  import { wxcode,login,authority } from '@/request/api';
   import {mapState,mapMutations} from "vuex"
     export default {
         name: "domeindex",
       data(){
           return{
-            code:[],
             list:[
               {
                 id:1,
               icon:  require('../assets/icon/area.png'),
               name:"我的小区",
-              itempath:"areaing"
+              itempath:"areaing",
+                count:0,
             },{
                 id:2,
+                count:0,
               icon:  require('../assets/icon/service.png'),
               name:"我的服务人员",
               itempath:"serviceing"
             },{
                 id:3,
+                count:0,
               icon:  require('../assets/icon/Order.png'),
               name:"我的订单",
               itempath:"index"
             },{
+                count:0,
                 id:4,
               icon:  require('../assets/icon/user.png'),
               name:"我的用户",
               itempath:"usering"
             },{
                 id:5,
+                count:0,
               icon:  require('../assets/icon/agent.png'),
               name:"我的代理",
               itempath:"agenting"
             },{
                 id:6,
+                count:0,
               icon:  require('../assets/icon/Invitation.png'),
               name:"我的邀请",
               itempath:"Invitationing"
@@ -115,24 +120,25 @@
         this.nickname=this.username
         this.company=this.usercompany
         this.balance=this.userbalance
-
-        if(this.code==''){
-          let hreas = window.location.href;
-          let headers=hreas.split('=');
-          let iscode=headers[2]+'=STATE'
-          if(iscode.length>16){
-            let  para={
-              code:iscode,
-            }
-            login(para).then(res=>{
-              // alert(JSON.stringify(res))
-              // this.code=res
-            })
-          }
-        }
-
         },
       mounted(){
+          let para={
+            uid:this.uid
+          }
+        authority(para).then(res=>{
+          let Islist=res.list
+          Islist.forEach((item)=>{
+            item.icon=item.img
+            item.name=item.content
+            item.itempath=item.authority
+            delete item.img
+            delete item.content
+            delete item.authority
+          })
+          this.list=Islist
+        }).catch(err=>{
+
+        })
       },
       methods:{
         ModularGoing(item){
@@ -259,7 +265,6 @@
            margin: .8rem auto 0 auto;
            width: 2rem;
            img{
-
              width: .8rem;
              margin: 0 .6rem;
            }

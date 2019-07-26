@@ -7,6 +7,10 @@ import tmap from '@/components/tmap'
 
 //dome
 import domeindex from '@/dome/domeindex'
+import Navigation from '@/dome/Navigation'
+import Audit from '@/dome/Audit'
+import SettledIn from '@/dome/SettledIn'
+import SettleTmap from '@/dome/SettleTmap'
 
 //pages
 import  areaing from '@/pages/areaing'
@@ -29,7 +33,26 @@ export default new Router({
       component: fivehundred
     },{
       path: '/',
+      name: 'Navigation',
+      component: Navigation
+    },{
+      path: '/Audit',
+      name: 'Audit',
+      component: Audit
+    },{
+      path: '/SettledIn',
+      name: 'SettledIn',
+      component: SettledIn
+    },{
+      path: '/SettleTmap',
+      name: 'SettleTmap',
+      component: SettleTmap
+    },{
+      path: '/domeindex',
       name: 'domeindex',
+      meta: {
+        requireAuth: true
+      },
       component: domeindex
     },{
       path: '/areaing',
