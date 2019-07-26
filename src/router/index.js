@@ -18,6 +18,7 @@ import  serviceing from '@/pages/serviceing'
 import  usering from '@/pages/usering'
 import  agenting from '@/pages/agenting'
 import  Invitationing from '@/pages/Invitationing'
+import  index from '@/pages/index'
 
 Vue.use(Router)
 
@@ -80,6 +81,10 @@ export default new Router({
       path: '/tmap',
       name: 'tmap',
       component: tmap
+    } ,{
+      path: '/index',
+      name: 'index',
+      component: index
     }
   ]
 })

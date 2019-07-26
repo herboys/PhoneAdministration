@@ -14,33 +14,38 @@
       <div>
         <ul  v-for="item in ismian" :key="item.name">
           <li>
-            <img :src="item.avatar" >
+            <img  :src="item.avatars"/>
           </li>
           <li>
-            {{item.nickname.substr(0,4)}}
+            {{item.realname}}
           </li>
           <li>
-            {{item.createtime}}
+            {{item.phone}}
+          </li>
+          <li v-if="item.status===0">
+            待接单
+          </li> <li v-if="item.status===1">
+            待服务
+          </li> <li v-if="item.status===2">
+            待确认
+          </li> <li v-if="item.status===3">
+            已完成
           </li>
           <li>
             {{item.village}}
           </li>
+
         </ul>
       </div>
     </main>
-    <div class="bottom">
-      <div>
-<!--        共{{total}}页，当前是{{page}}页-->
-        <p><span @click="NextPage">{{GoNextPage}}</span></p><p><span @click="IsNextPage">{{IsGoNextPage}}</span></p>
-      </div>
-     </div>
   </div>
 </template>
 
 <script>
-  import {userList}from  '@/request/api';
+  import {orderList} from "@/request/api"
   import {mapState,mapMutations} from "vuex"
   export default {
+    name: "areaing",
     data(){
       return{
         uid:"",
@@ -56,15 +61,15 @@
             name:"手机号"
           },
           {
-            name:"接单量"
+            name:"状态"
+          },
+          {
+            name:"小区"
           },
 
         ],
         ismian:[
-        ],
-        total:'',
-        GoNextPage:"前往下一页",
-        IsGoNextPage:"返回上一页"
+        ]
       }
     },
     computed:{
@@ -74,41 +79,21 @@
       this.uid=this.userid
     },
     mounted(){
-      this.Obtain()
+      let para={
+        uid:this.uid,
+        page:this.page
+      }
+      orderList(para).then(res=>{
+        this.total=res.count/10
+        let Islist=res.list
+        this.ismian=Islist
+      }).catch(err=>{
+
+      })
     },
-
     methods:{
-      Obtain(){
-        let para={
-          uid:this.uid,
-          page:this.page
-        }
-        userList(para).then(res=>{
-          this.total=res.count/10
-          let Islist=res.list
-          // Islist.forEach((item)=>{
-          //   item.name=item.realname
-          //
-          // })
-          this.ismian=Islist
-        }).catch(err=>{
-
-        })
-      },
       gotmap(){
         this.$router.push({ path: "/tmap"})
-      },
-      NextPage(){
-        if(this.total>this.page){
-          this.page++
-          this.Obtain()
-        }
-      },
-      IsNextPage(){
-        if(this.page>1){
-          this.page--
-          this.Obtain()
-        }
       }
     }
   }
@@ -132,23 +117,29 @@
         color: white;
         line-height: 1rem;
         font-size: .28rem;
-
+        overflow: hidden;
         li{
           flex: 1;
-          font-size: .36rem;
-
+          font-size: .2rem;
         }
-        li:nth-child(3){
-          flex: 2;
-        } li:nth-child(4){
-            flex: 2;
-          }
+        li:nth-child(1){
+          flex: 1;
+        } li:nth-child(2){
+            flex: 1;
+          }li:nth-child(3){
+             flex: 2;
+           }li:nth-child(4){
+              flex: 1;
+            }
+        li:nth-child(5){
+          flex: 3;
+        }
       }
     }
   }
   main{
+    margin-bottom: 1.2rem;
     div{
-      margin-bottom: 1rem;
       ul{
         display: flex;
         height: 1.2rem;
@@ -157,7 +148,6 @@
         font-weight: bold;
         height: 100%;
         overflow: scroll;
-
         li{
           flex: 1;
           font-size: .2rem;
@@ -169,13 +159,19 @@
             width: .7rem;
             height: .7rem;
             border-radius: 50%;
-
           }
         }
-        li:nth-child(3){
-          flex: 2;
-        } li:nth-child(4){
-          flex: 2;
+        li:nth-child(1){
+          flex: 1;
+        } li:nth-child(2){
+            flex: 1;
+          }li:nth-child(3){
+             flex: 2;
+           }li:nth-child(4){
+              flex: 1;
+            }
+        li:nth-child(5){
+          flex: 3;
         }
       }
       ul:hover{
@@ -184,30 +180,5 @@
       }
     }
   }
-  .bottom{
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-size: .36rem;
-    background-color: #09d15a;
-    height: 1.2rem;
-    line-height: 1.2rem;
-    text-align: center;
-    div{
-      display: flex;
-      justify-content: space-between;
-      padding: 0 .2rem;
-      p{
-        span{
-          background-color: white;
-          padding: .2rem .1rem;
-          border-radius: .2rem;
-          color: #333333;
-          font-weight: bold;
-        }
-      }
-    }
 
-  }
 </style>

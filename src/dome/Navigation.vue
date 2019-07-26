@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div  v-show="navigationis">
     <div class="Navigation">
       <ul>
         <li>
@@ -22,6 +22,7 @@
         name: "Navigation",
       data(){
           return{
+            navigationis:false
 
           }
       },
@@ -29,30 +30,39 @@
         ...mapState(['userstatus'])
       },
       mounted(){
-          // let hreas = window.location.href;
-          // let headers=hreas.split('=');
-          // let iscode=headers[2]+'=STATE'
-          // if(iscode.length>16){
-          //   let  para={
-          //     code:iscode,
-          //   }
-          //   login(para).then(res=>{
-          //   })
-          // }
-        // 判断返回状态值来判断是否审核通过
-          switch (this.userstatus) {
-            case 0:
-              this.$router.push({ path: "/SettledIn"})
-              break;
-            case 1:
-              this.$router.push({ path: "/domeindex"})
-              break;
-            case 2:
-              this.$router.push({ path: "/Audit"})
-              break;
+          let hreas = window.location.href;
+          let headers=hreas.split('=');
+          let iscode=headers[2]+'=STATE'
+          if(iscode.length>16){
+            let  para={
+              code:iscode,
+            }
+            login(para).then(res=>{
+              // alert(JSON.stringify(res))
+              this.USERID(res.info.id)
+              this.USERIMG(res.info.imgurl)
+              this.USERNAME(res.info.nickname)
+              this.USERBALANCE(res.info.balance)
+              this.USERSTATUS(res.info.status)
+              // 判断返回状态值来判断是否审核通过
+              switch (this.userstatus) {
+                case 0:
+                  this.navigationis=true
+                  // this.$router.push({ path: "/SettledIn"})
+                  break;
+                case 1:
+                  this.$router.push({ path: "/domeindex"})
+                  break;
+                case 2:
+                  this.$router.push({ path: "/Audit"})
+                  break;
+              }
+            })
           }
+
       },
       methods:{
+          ...mapMutations(['USERID','USERIMG','USERNAME','USERBALANCE','USERSTATUS']),
          Navigation_Btn(){
            let islists=[{id:1},{id:2},{id:3},{id:4}]
            islists.forEach((item)=>{
@@ -84,7 +94,7 @@
             return total, currentValue, currentIndex, arr
           },null)
            console.log(sum ,"返回值")
-           this.$router.push({ path: "/domeindex"})
+           this.$router.push({ path: "/SettledIn"})
         }
       }
     }

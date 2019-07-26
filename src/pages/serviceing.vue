@@ -28,7 +28,7 @@
         </ul>
       </div>
     </main>
-    <div class="bottom">共{{total}}页，当前是{{page}}页<span @click="NextPage">{{GoNextPage}}</span><span @click="IsNextPage">{{IsGoNextPage}}</span></div>
+    <div class="bottom">当前是{{page}}页<span @click="NextPage">{{GoNextPage}}</span><span @click="IsNextPage">{{IsGoNextPage}}</span></div>
   </div>
 </template>
 
@@ -86,7 +86,7 @@
           page:this.page
         }
         serviceList(para).then(res=>{
-          this.total=res.count
+          this.total=res.count/10
           let Islist=res.list
           Islist.forEach((item)=>{
             item.name=item.realname
@@ -134,27 +134,38 @@
         color: white;
         line-height: 1rem;
         font-size: .28rem;
+
         li{
           flex: 1;
           font-size: .36rem;
 
         }
+        li:nth-child(3){
+          flex: 2;
+        } li:nth-child(4){
+            flex: 2;
+          }
       }
     }
   }
   main{
     div{
+      margin-bottom: 1rem;
       ul{
         display: flex;
         height: 1.2rem;
         text-align: center;
         font-size: .3rem;
         font-weight: bold;
+        height: 100%;
+        overflow: scroll;
+
         li{
           flex: 1;
           font-size: .2rem;
           border-bottom: .01rem solid #eeeeee;
           line-height: 1.2rem;
+          overflow: hidden;
           img{
             margin-top: .25rem;
             width: .7rem;
@@ -163,6 +174,11 @@
 
           }
         }
+        li:nth-child(3){
+          flex: 2;
+        } li:nth-child(4){
+            flex: 2;
+          }
       }
       ul:hover{
         background-color: beige;

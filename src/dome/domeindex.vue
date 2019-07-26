@@ -33,7 +33,7 @@
               </li>
             </ul>
           </div>
-          <div>提现</div>
+          <div @click="admininvitePaybtn()">提现</div>
         </div>
       </div>
       <nav>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-  import { wxcode,login,authority } from '@/request/api';
+  import { wxcode,login,authority,admininvitePay } from '@/request/api';
   import {mapState,mapMutations} from "vuex"
     export default {
         name: "domeindex",
@@ -176,6 +176,7 @@
         })
       },
       methods:{
+...mapMutations(['USERBALANCE']),
         showMarquee: function () {
           this.animate = true;
           setTimeout(()=>{
@@ -185,11 +186,26 @@
           },500)},
         ModularGoing(item){
           switch (item.itempath){
-          case "index":
+          case "indexpppppp":
           break;
             default:
               this.$router.push({ path: item.itempath})
           }
+        },
+        admininvitePaybtn(){
+          console.log(111)
+          let para={
+            uid:this.uid
+          }
+          admininvitePay(para).then(res=>{
+            switch (res.status) {
+              case 1:
+                this.balance=0
+                this.USERBALANCE(this.balance)
+                break
+            }
+
+          })
         }
       }
     }

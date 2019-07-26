@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token:'',
-    userid:18,   //用户ID
+    userid:17,   //用户ID
     userimg:require("../assets/mock/userimg.png"),       //头像
     username:"繁华待摘",
     userbalance:1000,         //余额

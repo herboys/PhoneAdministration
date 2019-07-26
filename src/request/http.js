@@ -41,12 +41,11 @@ axios.interceptors.response.use(
   },
   error => {
     if (error.response.status) {
-      alert(JSON.stringify(error.response))
       switch (error.response.status) {
         case 401:
           break;
         case 500:
-          router.push("/fivehundred")
+          // router.push("/fivehundred")
           break;
         case 404:
           alert("404")

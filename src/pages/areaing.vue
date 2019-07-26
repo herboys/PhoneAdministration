@@ -14,19 +14,19 @@
         <div>
           <ul  v-for="item in ismian" :key="item.name">
             <li>
-              {{item.name}}
+            {{item.village}}
             </li>
              <li>
-              {{item.isshouru}}
+              {{item.earnings}}
             </li>
              <li>
-              {{item.fuwu}}
+              {{item.service}}
             </li>
              <li>
-              {{item.user}}
+              {{item.usersum}}
             </li>
              <li>
-              {{item.yue}}
+              {{item.ordersum}}
             </li>
 
           </ul>
@@ -39,10 +39,14 @@
 </template>
 
 <script>
+  import {villageList} from "@/request/api"
+  import {mapState,mapMutations} from "vuex"
     export default {
         name: "areaing",
       data(){
           return{
+            uid:"",
+            page:1,
             isheader:[
               {
                 name:"小区名称"
@@ -57,20 +61,32 @@
                 name:"用户"
               },
  {
-                name:"月单量"
+                name:"总单量"
               },
 
             ],
             ismian:[
-              {
-                name:"张三",
-                isshouru:100,
-                fuwu:10,
-                user:100,
-                yue:1000
-              }
             ]
           }
+      },
+      computed:{
+        ...mapState(['userid'])
+      },
+      created(){
+        this.uid=this.userid
+      },
+      mounted(){
+        let para={
+          uid:this.uid,
+          page:this.page
+        }
+        villageList(para).then(res=>{
+          this.total=res.count/10
+          let Islist=res.list
+          this.ismian=Islist
+        }).catch(err=>{
+
+        })
       },
       methods:{
         gotmap(){
@@ -102,6 +118,15 @@
           flex: 1;
           font-size: .2rem;
         }
+        li:nth-child(1){
+          flex: 3;
+        } li:nth-child(2){
+          flex: 2;
+        } li:nth-child(3){
+          flex: 2;
+        }li:nth-child(5){
+          flex: 2;
+        }
       }
     }
   }
@@ -118,7 +143,24 @@
           flex: 1;
           font-size: .2rem;
           border-bottom: .01rem solid #eeeeee;
+          img{
+            margin-top: .25rem;
+            width: .7rem;
+            height: .7rem;
+            border-radius: 50%;
+
+          }
+
         }
+        li:nth-child(1){
+          flex: 3;
+        } li:nth-child(2){
+            flex: 2;
+          } li:nth-child(3){
+              flex: 2;
+            }li:nth-child(5){
+               flex: 2;
+             }
       }
       ul:hover{
         background-color: beige;

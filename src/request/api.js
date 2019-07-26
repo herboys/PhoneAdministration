@@ -6,6 +6,14 @@ export const adminAdd = p => post('https://www.txkuaiyou.com/admin/Wasteauthorit
 
 // 获取用户列表
 export const userList = p => post('https://www.txkuaiyou.com/admin/Wasteuser/userList', p);
+// 获取小区
+export const orderList = p => post('https://www.txkuaiyou.com/admin/Wasteorder/orderList', p);
+// 获取小区
+export const villageList = p => post('https://www.txkuaiyou.com/admin/Wastevillage/villageList', p);
+// 提现
+export const admininvitePay = p => post('https://www.txkuaiyou.com/waste/users/admininvitePay', p);
+// 上传图片
+export const goodsPublish = p => post('https://www.txkuaiyou.com/index/Publishx/goodsPublish', p);
 
 // 在地图中点击搜索获取列表
 export const tmap = p => get('https://restapi.amap.com/v3/place/text', p);
