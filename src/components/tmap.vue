@@ -89,6 +89,7 @@
         islocationislistbtn(item){
           item.disabled=true
           console.log(item)
+          this.$router.go(-1)
 
         }
       }
@@ -152,6 +153,7 @@ background-color: white;
   }
   main{
     padding: .3rem;
+    background-color: white;
     div{
       ul{
         li{

@@ -142,9 +142,12 @@
       },
       methods:{
         ModularGoing(item){
-          let ispath=item.itempath
-          this.$router.push({ path: ispath})
-
+          switch (item.itempath){
+          case "index":
+          break;
+            default:
+              this.$router.push({ path: item.itempath})
+          }
         }
       }
     }

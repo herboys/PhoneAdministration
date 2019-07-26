@@ -14,41 +14,49 @@
       <div>
         <ul  v-for="item in ismian" :key="item.name">
           <li>
-            {{item.name}}
+            <img :src="item.avatar" >
           </li>
           <li>
-            {{item.isshouru}}
+            {{item.name.substr(0,4)}}
           </li>
           <li>
-            {{item.fuwu}}
+            {{item.phone}}
           </li>
           <li>
-            {{item.user}}
+            {{item.order_sum}}
           </li>
-
-
         </ul>
       </div>
     </main>
+    <div class="bottom">
+      <div>
+<!--        共{{total}}页，当前是{{page}}页-->
+        <p><span @click="NextPage">{{GoNextPage}}</span></p><p><span @click="IsNextPage">{{IsGoNextPage}}</span></p>
+      </div>
+     </div>
   </div>
 </template>
 
 <script>
+  import {userList}from  '@/request/api';
+  import {mapState,mapMutations} from "vuex"
   export default {
     data(){
       return{
+        uid:"",
+        page:1,
         isheader:[
           {
-            name:"姓名"
+            name:"头像"
           },
           {
-            name:"关注 "
+            name:"姓名 "
           },
           {
-            name:"月卡"
+            name:"手机号"
           },
           {
-            name:"年卡"
+            name:"接单量"
           },
 
         ],
@@ -58,13 +66,56 @@
             isshouru:100,
             fuwu:10,
             user:100,
+            yue:1000
           }
-        ]
+        ],
+        total:'',
+        GoNextPage:"前往下一页",
+        IsGoNextPage:"返回上一页"
       }
     },
+    computed:{
+      ...mapState(['userid'])
+    },
+    created(){
+      this.uid=this.userid
+    },
+    mounted(){
+      this.Obtain()
+    },
+
     methods:{
+      Obtain(){
+        let para={
+          uid:this.uid,
+          page:this.page
+        }
+        userList(para).then(res=>{
+          this.total=res.count
+          let Islist=res.list
+          Islist.forEach((item)=>{
+            item.name=item.realname
+            delete item.realname
+          })
+          this.ismian=Islist
+        }).catch(err=>{
+
+        })
+      },
       gotmap(){
         this.$router.push({ path: "/tmap"})
+      },
+      NextPage(){
+        if(this.total>this.page){
+          this.page++
+          this.Obtain()
+        }
+      },
+      IsNextPage(){
+        if(this.page>1){
+          this.page--
+          this.Obtain()
+        }
       }
     }
   }
@@ -90,7 +141,8 @@
         font-size: .28rem;
         li{
           flex: 1;
-          font-size: .2rem;
+          font-size: .36rem;
+
         }
       }
     }
@@ -99,7 +151,7 @@
     div{
       ul{
         display: flex;
-        line-height: 1rem;
+        height: 1.2rem;
         text-align: center;
         font-size: .3rem;
         font-weight: bold;
@@ -107,6 +159,14 @@
           flex: 1;
           font-size: .2rem;
           border-bottom: .01rem solid #eeeeee;
+          line-height: 1.2rem;
+          img{
+            margin-top: .25rem;
+            width: .7rem;
+            height: .7rem;
+            border-radius: 50%;
+
+          }
         }
       }
       ul:hover{
@@ -114,5 +174,31 @@
 
       }
     }
+  }
+  .bottom{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: .36rem;
+    background-color: #09d15a;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    div{
+      display: flex;
+      justify-content: space-between;
+      padding: 0 .2rem;
+      p{
+        span{
+          background-color: white;
+          padding: .2rem .1rem;
+          border-radius: .2rem;
+          color: #333333;
+          font-weight: bold;
+        }
+      }
+    }
+
   }
 </style>

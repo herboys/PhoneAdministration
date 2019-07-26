@@ -1,6 +1,12 @@
 import {get, post } from './http'
 export const apiAddress = p => post('https://www.txkuaiyou.com/waste/users/userInfo', p);
 
+
+export const adminAdd = p => post('https://www.txkuaiyou.com/admin/Wasteauthority/adminAdd', p);
+
+// 获取用户列表
+export const userList = p => post('https://www.txkuaiyou.com/admin/Wasteuser/userList', p);
+
 // 在地图中点击搜索获取列表
 export const tmap = p => get('https://restapi.amap.com/v3/place/text', p);
 //进入页面 获取当前周边的内容

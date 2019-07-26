@@ -100,8 +100,6 @@
         console.log(item)
         this.DYNAMICADDRESS(item)
         this.$router.go(-1)
-
-
       }
     }
   }

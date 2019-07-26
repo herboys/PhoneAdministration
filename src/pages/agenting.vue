@@ -96,7 +96,7 @@
         font-size: .28rem;
         li{
           flex: 1;
-          font-size: .2rem;
+          font-size: .36rem;
         }
       }
     }
