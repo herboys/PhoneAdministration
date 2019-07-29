@@ -52,7 +52,7 @@
                 name:"小区名称"
               },
  {
-                name:"月收入金额 "
+                name:"月收入 "
               },
  {
                 name:"服务人员"
@@ -116,7 +116,7 @@
         font-size: .28rem;
         li{
           flex: 1;
-          font-size: .2rem;
+          font-size: .36rem;
         }
         li:nth-child(1){
           flex: 3;

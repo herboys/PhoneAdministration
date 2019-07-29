@@ -15,35 +15,35 @@
                 <input v-model="realname" placeholder="请输入您的名字 " />
               </a>
             </li>
-            <li>
-              <span>性别</span>
-              <a style="display: flex;align-items: center">
-                <div v-for="item in sexlist" :key="item.id" @click="sexlistBtn(item)"
-                     :class="sex == item.id ? 'addclass' : '' " style="font-size:.28rem;
-font-family:SourceHanSansCN-Medium;
-font-weight:500;
-color:rgba(102,102,102,1);padding: 0.1rem 0.4rem">{{item.name}}
-                </div>
-              </a>
-            </li>
-            <li>
-              <span>年龄</span>
-              <a>
-                <input v-model="age" placeholder="请输入您的年龄" />
-              </a>
-            </li>
+<!--            <li>-->
+<!--              <span>性别</span>-->
+<!--              <a style="display: flex;align-items: center">-->
+<!--                <div v-for="item in sexlist" :key="item.id" @click="sexlistBtn(item)"-->
+<!--                     :class="sex == item.id ? 'addclass' : '' " style="font-size:.28rem;-->
+<!--font-family:SourceHanSansCN-Medium;-->
+<!--font-weight:500;-->
+<!--color:rgba(102,102,102,1);padding: 0.1rem 0.4rem">{{item.name}}-->
+<!--                </div>-->
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <span>年龄</span>-->
+<!--              <a>-->
+<!--                <input v-model="age" placeholder="请输入您的年龄" />-->
+<!--              </a>-->
+<!--            </li>-->
             <li>
               <span style=" letter-spacing: .1rem;">手机号</span>
               <a>
                 <input v-model="phone" placeholder="请填写您的手机号" />
               </a>
             </li>
-            <li>
-              <span style=" letter-spacing: 0.01rem;">公司名称</span>
-              <a>
-                <input v-model="company" placeholder="请填写您的公司名称" />
-              </a>
-            </li>
+<!--            <li>-->
+<!--              <span style=" letter-spacing: 0.01rem;">公司名称</span>-->
+<!--              <a>-->
+<!--                <input v-model="company" placeholder="请填写您的公司名称" />-->
+<!--              </a>-->
+<!--            </li>-->
             <li @click="SettleTmapbtn">
               <span style=" letter-spacing: 0.01rem;">小区定位</span>
               <a>
@@ -121,28 +121,28 @@ color:rgba(102,102,102,1);padding: 0.1rem 0.4rem">{{item.name}}
           <img :src="item.url" style="width: 3.5rem;height: 2.3rem ;background-color:  #EEEEEE;border-radius: .2rem">
         </div>
       </div>
- <!--      上传图片-->
-      <div class="up_img_item">
-        <div>
-          <img
-            src="../assets/icon/certificate.png" style="width: 3.5rem;height: 2.3rem"/>
-          <input id="one_upload_fileabc"
-                 style="display: none;"
-                 type="file"
-                 accept='image/*'
-                 @change="onefileChangeabc($event)" />
-        </div>
-        <div style="width: 3.5rem;height: 2.3rem ;background-color: #EEEEEE;border-radius: .2rem;display: flex;justify-content: center;align-items: center"  @click="oneimgsabc" v-if="newimgListimgListabc.length===0">
-          <div>上传</div>
-        </div>
-        <div
-          v-for="(item,index) in newimgListimgListabc"
-          :key="index">
-          <input style="display:none"
-                 v-model="item.name" />
-          <img :src="item.url" style="width: 3.5rem;height: 2.3rem ;background-color:  #EEEEEE;border-radius: .2rem">
-        </div>
-      </div>
+<!-- &lt;!&ndash;      上传图片&ndash;&gt;-->
+<!--      <div class="up_img_item">-->
+<!--        <div>-->
+<!--          <img-->
+<!--            src="../assets/icon/certificate.png" style="width: 3.5rem;height: 2.3rem"/>-->
+<!--          <input id="one_upload_fileabc"-->
+<!--                 style="display: none;"-->
+<!--                 type="file"-->
+<!--                 accept='image/*'-->
+<!--                 @change="onefileChangeabc($event)" />-->
+<!--        </div>-->
+<!--        <div style="width: 3.5rem;height: 2.3rem ;background-color: #EEEEEE;border-radius: .2rem;display: flex;justify-content: center;align-items: center"  @click="oneimgsabc" v-if="newimgListimgListabc.length===0">-->
+<!--          <div>上传</div>-->
+<!--        </div>-->
+<!--        <div-->
+<!--          v-for="(item,index) in newimgListimgListabc"-->
+<!--          :key="index">-->
+<!--          <input style="display:none"-->
+<!--                 v-model="item.name" />-->
+<!--          <img :src="item.url" style="width: 3.5rem;height: 2.3rem ;background-color:  #EEEEEE;border-radius: .2rem">-->
+<!--        </div>-->
+<!--      </div>-->
       <div style="margin-bottom: 1.5rem"></div>
       <div>
       </div>
@@ -512,14 +512,14 @@ color:rgba(102,102,102,1);padding: 0.1rem 0.4rem">{{item.name}}
             let para={
               uid:this.uid,
               realname:this.realname,
-              sex:this.sex,
-              age:this.age,
+             // sex:this.sex,
+             // age:this.age,
               phone:this.phone,
               company:this.company,
               just:this.hand,    //正面
               against:this.handa,   //反面
               hand:this.handab,   //手持
-              business:this.handabc,    //营业执照
+             // business:this.handabc,    //营业执照
               address:this.village,   //定位地址
               village:this.address,   //小区
               province:this.pname,   //省

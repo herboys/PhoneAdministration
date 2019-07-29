@@ -17,7 +17,7 @@
             <img  :src="item.avatars"/>
           </li>
           <li>
-            {{item.realname}}
+            {{item.realname.substr(0,3)}}
           </li>
           <li>
             {{item.phone}}
@@ -38,6 +38,15 @@
         </ul>
       </div>
     </main>
+    <div class="ispages">
+      <div>
+        <span>总{{total}}页</span>
+        <span>当前{{page}}页</span>
+        <span @click="GoBack">上一页</span>
+        <span @click="GoNext">下一页</span>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -79,21 +88,36 @@
       this.uid=this.userid
     },
     mounted(){
-      let para={
-        uid:this.uid,
-        page:this.page
-      }
-      orderList(para).then(res=>{
-        this.total=res.count/10
-        let Islist=res.list
-        this.ismian=Islist
-      }).catch(err=>{
-
-      })
+      this.FistList()
     },
     methods:{
       gotmap(){
         this.$router.push({ path: "/tmap"})
+      },
+      GoBack(){
+        if(this.page>1){
+          this.page--
+          this.FistList()
+        }
+      },
+      GoNext(){
+        if(this.total>this.page){
+          this.page++
+          this.FistList()
+        }
+      },
+      FistList(){
+        let para={
+          uid:this.uid,
+          page:this.page
+        }
+        orderList(para).then(res=>{
+          this.total=Math.ceil(res.count/10)
+          let Islist=res.list
+          this.ismian=Islist
+        }).catch(err=>{
+
+        })
       }
     }
   }
@@ -119,8 +143,9 @@
         font-size: .28rem;
         overflow: hidden;
         li{
+
           flex: 1;
-          font-size: .2rem;
+          font-size: .36rem;
         }
         li:nth-child(1){
           flex: 1;
@@ -138,7 +163,7 @@
     }
   }
   main{
-    margin-bottom: 1.2rem;
+    background-color: white;
     div{
       ul{
         display: flex;
@@ -176,6 +201,20 @@
       }
       ul:hover{
         background-color: beige;
+
+      }
+    }
+  }
+  .ispages{
+    height: 1.2rem;
+    line-height: 1.2rem;
+    background-color: white;
+    div{
+      display: flex;
+      font-size: .3rem;
+      text-align: center;
+      span{
+        flex: 1;
 
       }
     }

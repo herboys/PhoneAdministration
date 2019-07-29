@@ -15,7 +15,7 @@ export default new Vuex.Store({
     userbalance:1000,         //余额
     type:1,
     userstatus:1,         //状态0不是1审核通过2待审核
-    usercompany:"此项目来自一位秃头少年",
+    usercompany:"",
     // 动态添加地址
     DynamicAddress:"",
     PublicAddress:[]

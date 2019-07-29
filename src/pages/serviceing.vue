@@ -28,7 +28,14 @@
         </ul>
       </div>
     </main>
-    <div class="bottom">当前是{{page}}页<span @click="NextPage">{{GoNextPage}}</span><span @click="IsNextPage">{{IsGoNextPage}}</span></div>
+    <div class="ispages">
+      <div>
+        <span>总{{total}}页</span>
+        <span>当前{{page}}页</span>
+        <span @click="IsNextPage">上一页</span>
+        <span @click="NextPage">下一页</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -86,7 +93,7 @@
           page:this.page
         }
         serviceList(para).then(res=>{
-          this.total=res.count/10
+          this.total=Math.ceil(res.count/10)
           let Islist=res.list
           Islist.forEach((item)=>{
             item.name=item.realname
@@ -149,8 +156,8 @@
     }
   }
   main{
+    background-color: white;
     div{
-      margin-bottom: 1rem;
       ul{
         display: flex;
         height: 1.2rem;
@@ -186,22 +193,19 @@
       }
     }
   }
-  .bottom{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-size: .36rem;
-    background-color: #09d15a;
+  .ispages{
     height: 1.2rem;
     line-height: 1.2rem;
-    text-align: center;
-    span{
-      background-color: white;
-      padding: .2rem .1rem;
-      margin: 0 .1rem;
-      border-radius: .2rem;
-      color: #333333;
-      font-weight: bold;
+    background-color: white;
+    div{
+      display: flex;
+      font-size: .3rem;
+      text-align: center;
+      span{
+        flex: 1;
+
+      }
     }
   }
+
 </style>

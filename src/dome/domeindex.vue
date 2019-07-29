@@ -7,13 +7,11 @@
               <li>{{nickname}}</li>
               <li>
                 <span>{{company}}</span>
-                <img  src="../assets/icon/Official.png"/>
+<!--                <img  src="../assets/icon/Official.png"/>-->
               </li>
             </ul>
           </div>
           <div>
-
-
                 <img :src="imgurl" />
 
 

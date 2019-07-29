@@ -11,6 +11,7 @@ import Navigation from '@/dome/Navigation'
 import Audit from '@/dome/Audit'
 import SettledIn from '@/dome/SettledIn'
 import SettleTmap from '@/dome/SettleTmap'
+import bb from '@/dome/bb'
 
 //pages
 import  areaing from '@/pages/areaing'
@@ -20,10 +21,19 @@ import  agenting from '@/pages/agenting'
 import  Invitationing from '@/pages/Invitationing'
 import  index from '@/pages/index'
 
+// 练习
+  import father from '@/from/father'
+  import child from '@/from/child'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/Navigation',
+      name: 'Navigation',
+      component: Navigation
+    },
     {
       path: '/HelloWorld',
       name: 'HelloWorld',
@@ -32,10 +42,6 @@ export default new Router({
       path: '/fivehundred',
       name: 'fivehundred',
       component: fivehundred
-    },{
-      path: '/',
-      name: 'Navigation',
-      component: Navigation
     },{
       path: '/Audit',
       name: 'Audit',
@@ -85,6 +91,19 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: index
+    }
+    ,{
+      path: '/',
+      name: 'father',
+      component: father
+    } ,{
+      path: '/child',
+      name: 'child',
+      component: child
+    },{
+      path: '/bb',
+      name: 'bb',
+      component: bb
     }
   ]
 })
