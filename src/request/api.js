@@ -12,3 +12,8 @@ export const authority= p => post('https://www.txkuaiyou.com/admin/Wasteauthorit
 export const serviceList= p => post('https://www.txkuaiyou.com/admin/Wasteservice/serviceList', p);
 export const wxcode= p => post('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx369502e55f9d6567&redirect_uri=https://www.tiaoxinkeji.com/waste/admin?response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect', p);
 export const login = p => post('https://www.txkuaiyou.com/admin/login/loginIn', p);
+
+
+
+
+export const loginin = p => get('http://localhost:3000/home', p);

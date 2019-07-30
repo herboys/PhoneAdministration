@@ -1,5 +1,9 @@
 <template>
     <div ref="Model">
+        <div>
+            <button @click="logininbtn">点击</button>
+        </div>
+
         father
         <input v-model="parentMsg">
         <v-child :message="parentMsg" v-on:childByValue="childByValue"></v-child>
@@ -9,6 +13,7 @@
 
 <script>
     import child from "./child";
+    import {loginin} from "@/request/api"
     export default {
         name: "father",
         data(){
@@ -25,6 +30,16 @@
             childByValue(childValue) {
                 // childValue就是子组件传过来的值
                 this.name = childValue
+            },
+            logininbtn(){
+                let para={
+                    uid:100
+                }
+                loginin(para).then(res=>{
+                    console.log(res)
+                }).catch(err=>{
+
+                })
             }
         }
     }
@@ -34,5 +49,4 @@
     div{
         font-size: .3rem;
     }
-
 </style>
