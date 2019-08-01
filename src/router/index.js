@@ -8,8 +8,10 @@ import tmap from '@/components/tmap'
 //dome
 import domeindex from '@/dome/domeindex'
 import Navigation from '@/dome/Navigation'
+import IdentitySelection from '@/dome/IdentitySelection'
 import Audit from '@/dome/Audit'
 import SettledIn from '@/dome/SettledIn'
+import LowSettledIn from '@/dome/LowSettledIn'
 import SettleTmap from '@/dome/SettleTmap'
 import bb from '@/dome/bb'
 
@@ -20,6 +22,9 @@ import  usering from '@/pages/usering'
 import  agenting from '@/pages/agenting'
 import  Invitationing from '@/pages/Invitationing'
 import  index from '@/pages/index'
+import  month from '@/pages/month'
+import  week from '@/pages/week'
+import  agency from '@/pages/agency'
 
 // 练习
   import father from '@/from/father'
@@ -30,9 +35,13 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/Navigation',
+      path: '/',
       name: 'Navigation',
       component: Navigation
+    }, {
+      path: '/IdentitySelection',
+      name: 'IdentitySelection',
+      component: IdentitySelection
     },
     {
       path: '/HelloWorld',
@@ -50,6 +59,10 @@ export default new Router({
       path: '/SettledIn',
       name: 'SettledIn',
       component: SettledIn
+    },{
+      path: '/LowSettledIn',
+      name: 'LowSettledIn',
+      component: LowSettledIn
     },{
       path: '/SettleTmap',
       name: 'SettleTmap',
@@ -82,6 +95,19 @@ export default new Router({
       name: 'Invitationing',
       component: Invitationing
     },
+{
+      path: '/month',
+      name: 'month',
+      component: month
+    },{
+      path: '/week',
+      name: 'week',
+      component: week
+    },{
+      path: '/agency',
+      name: 'agency',
+      component: agency
+    },
 
     {
       path: '/tmap',
@@ -93,7 +119,7 @@ export default new Router({
       component: index
     }
     ,{
-      path: '/',
+      path: '/father',
       name: 'father',
       component: father
     } ,{

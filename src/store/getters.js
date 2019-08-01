@@ -5,3 +5,4 @@ export const USERID = state => state.USERID;
 export const USERIMG = state => state.USERIMG;
 export const USERNAME = state => state.USERNAME;
 export const USERSTATUS = state => state.USERSTATUS;
+export const TYPEPERSON = state => state.TYPEPERSON;

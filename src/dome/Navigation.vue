@@ -22,7 +22,7 @@
         name: "Navigation",
       data(){
           return{
-            navigationis:false
+            navigationis:true
 
           }
       },
@@ -94,7 +94,7 @@
             return total, currentValue, currentIndex, arr
           },null)
            console.log(sum ,"返回值")
-           this.$router.push({ path: "/SettledIn"})
+           this.$router.push({ path: "/IdentitySelection"})
         }
       }
     }

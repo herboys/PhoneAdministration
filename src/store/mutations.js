@@ -16,4 +16,6 @@ export const USERID = (state, data) => {
 };
 export const USERBALANCE = (state, data) => {
   state.userbalance = data
+};export const TYPEPERSON = (state, data) => {
+  state.Typeperson = data
 };
